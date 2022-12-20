@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="huayq.cn.blog.dal.mapper.TagMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="huayq.cn.blog.dal.model.TagDO">
+        <id column="ID" property="id" />
+        <result column="TAG_NO" property="tagNo" />
+        <result column="NAME" property="name" />
+        <result column="CREATED_AT" property="createdAt" />
+        <result column="CREATED_BY" property="createdBy" />
+        <result column="UPDATED_AT" property="updatedAt" />
+        <result column="UPDATED_BY" property="updatedBy" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, TAG_NO, NAME, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY
+    </sql>
+
+</mapper>
