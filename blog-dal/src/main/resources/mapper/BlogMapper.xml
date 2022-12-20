@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="huayq.cn.blog.dal.mapper.BlogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="huayq.cn.blog.dal.model.BlogDO">
+        <id column="ID" property="id" />
+        <result column="BLOG_NO" property="blogNo" />
+        <result column="TITLE" property="title" />
+        <result column="CONTENT" property="content" />
+        <result column="DESCRIPTION" property="description" />
+        <result column="VIEWS" property="views" />
+        <result column="TAG" property="tag" />
+        <result column="CREATED_AT" property="createdAt" />
+        <result column="CREATED_BY" property="createdBy" />
+        <result column="UPDATED_AT" property="updatedAt" />
+        <result column="UPDATED_BY" property="updatedBy" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID,
+        BLOG_NO,
+        TITLE,
+        CONTENT,
+        DESCRIPTION,
+        VIEWS,
+        TAG,
+        CREATED_AT,
+        CREATED_BY,
+        UPDATED_AT,
+        UPDATED_BY
+    </sql>
+    <select id="selectById" resultMap="BaseResultMap" parameterType="integer">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM
+            T_BLOG
+        WHERE
+            BLOG_NO = #{blogNo}
+    </select>
+
+</mapper>

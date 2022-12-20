@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>huayq.cn</groupId>
+    <artifactId>BLOG_END</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>BLOG_END</name>
+    <parent>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <version>2.7.5</version>
+    </parent>
+
+    <modules>
+        <module>blog-dal</module>
+        <module>blog-service-api</module>
+        <module>blog-service</module>
+        <module>blog-web</module>
+        <module>blog-task</module>
+        <module>blog-manager</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <mybatis.version>3.0.0</mybatis.version>
+        <mysql-connector-java.version>8.0.29</mysql-connector-java.version>
+        <druid.version>1.1.10</druid.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <lombok.version>1.18.24</lombok.version>
+        <junit.version>4.12</junit.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--子项目-->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>blog-dal</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>blog-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>blog-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>blog-service-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
+            <!--springboot启动类依赖导入-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-web</artifactId>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;springboot测试依赖&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-starter-test</artifactId>-->
+<!--            </dependency>-->
+
+            <!-- MyBatis核心Jar包 -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <!-- MySql驱动 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+            </dependency>
+            <!-- druid阿里的数据库连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- slf4j日志包 -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <!-- Lombok工具 -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <!-- Junit测试 -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>
