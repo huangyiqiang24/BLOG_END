@@ -15,7 +15,21 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        ID, TAG_NO, NAME, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY
+        ID,
+        TAG_NO,
+        NAME,
+        CREATED_AT,
+        CREATED_BY,
+        UPDATED_AT,
+        UPDATED_BY
     </sql>
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM
+            T_TAG
+        WHERE
+            TAG_NO = #{tagNo}
+    </select>
 
 </mapper>

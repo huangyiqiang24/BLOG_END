@@ -29,11 +29,12 @@
     </sql>
 
     <select id="selectById" resultMap="BaseResultMap" parameterType="Integer">
-        select
+        SELECT
             <include refid="Base_Column_List"/>
-        from
+        FROM
             T_USER
-        where USER_NO = #{userNo}
+        WHERE
+            USER_NO = #{userNo}
     </select>
 
 </mapper>

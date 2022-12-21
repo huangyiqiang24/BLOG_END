@@ -17,7 +17,23 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        ID, COMMENT_NO, NICKNAME, CONTENT, PARENT_COMMENT, CREATED_AT, CREATED_BY, UPDATED_AT, UPDATED_BY
+        ID,
+        COMMENT_NO,
+        NICKNAME,
+        CONTENT,
+        PARENT_COMMENT,
+        CREATED_AT,
+        CREATED_BY,
+        UPDATED_AT,
+        UPDATED_BY
     </sql>
+    <select id="selectById" resultType="huayq.cn.blog.dal.model.CommentDO">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM
+            T_COMMENT
+        WHERE
+            COMMENT_NO = #{commentNo}
+    </select>
 
 </mapper>

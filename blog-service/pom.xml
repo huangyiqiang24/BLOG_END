@@ -22,8 +22,9 @@
             <artifactId>blog-service-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>blog-common</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 

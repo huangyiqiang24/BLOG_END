@@ -3,7 +3,7 @@
 <mapper namespace="huayq.cn.blog.dal.mapper.BlogMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="huayq.cn.blog.dal.model.BlogDO">
+    <resultMap id="BaseResultMap" type="BlogDO">
         <id column="ID" property="id" />
         <result column="BLOG_NO" property="blogNo" />
         <result column="TITLE" property="title" />
@@ -31,6 +31,55 @@
         UPDATED_AT,
         UPDATED_BY
     </sql>
+
+    <insert id="insert" parameterType="BlogDO">
+        INSERT  INTO
+            T_BLOG(
+                ID,
+                BLOG_NO,
+                TITLE,
+                CONTENT,
+                DESCRIPTION,
+                VIEWS,
+                TAG,
+                CREATED_AT,
+                CREATED_BY,
+                UPDATED_AT,
+                UPDATED_BY
+        )VALUES (
+                #{id},
+                #{blogNo},
+                #{title},
+                #{content},
+                #{description},
+                #{views},
+                #{tag},
+                now(),
+                #{createdAt},
+                now(),
+                #{updatedAt})
+    </insert>
+
+    <update id="update" parameterType="BlogDO">
+        UPDATE
+            T_BLOG
+        <set>
+            <if test="tittle != null and tittle != ''"/>
+                TITTLE = #{title},
+            <if test="content != null and content != ''"/>
+                CONTENT = #{content},
+            <if test="description != null and description != ''"/>
+                DESCRIPTION = #{description},
+            <if test="tag != null and tag != ''"/>
+                TAG = #{tag},
+            <if test="updated_by != null and updated_by != ''"/>
+                UPDATED_BY = #{updatedBy},
+                UPDATED_AT = now()
+        </set>
+        WHERE
+            BLOG_NO = #{blogNo}
+    </update>
+
     <select id="selectById" resultMap="BaseResultMap" parameterType="integer">
         SELECT
             <include refid="Base_Column_List"/>
@@ -38,6 +87,15 @@
             T_BLOG
         WHERE
             BLOG_NO = #{blogNo}
+    </select>
+
+    <select id="selectByPage" resultType="huayq.cn.blog.dal.model.BlogDO">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM
+            T_BLOG
+        ORDER BY UPDATED_AT
+        limit #{startIndex,jdbcType=DECIMAL} <![CDATA[,]]> #{pageSize,jdbcType=DECIMAL}
     </select>
 
 </mapper>
