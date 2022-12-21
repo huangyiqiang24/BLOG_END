@@ -1,0 +1,31 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://43.139.51.217:3306/BLOG?useSSL=true&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 19960313a
+
+mybatis:
+  type-aliases-package: huayq.cn.blog.dal.model
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath*:mapper/*.xml
+
+server:
+  port: 8080
+
+dubbo:
+  application:
+    name: blog_end
+  protocol:
+    name: dubbo
+    port: 20890
+  registry:
+    address: zookeeper://43.139.51.217
+    port: 2181
+    timeout: 100000
+  scan:
+    base-packages: blog-service.huayq.cn.blog.service
+#  scan:
+#    base-packages: cn.huayq.dubboExample
