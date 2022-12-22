@@ -4,6 +4,7 @@ import huayq.cn.blog.dal.mapper.UserMapper;
 import huayq.cn.blog.dal.model.UserDO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import test.BaseApplicationTest;
 
@@ -20,7 +21,7 @@ public class MapperTest  extends BaseApplicationTest {
 
     @Test
     public void testUserMapper(){
-        UserDO userDO = userMapper.selectById(1);
+        UserDO userDO = userMapper.selectById("1");
         log.info("userDo:{}", userDO);
     }
 }

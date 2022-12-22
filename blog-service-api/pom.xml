@@ -11,6 +11,13 @@
     <artifactId>blog-service-api</artifactId>
     <packaging>pom</packaging>
 
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>blog-common</artifactId>
+        </dependency>
+    </dependencies>
+
 
 
 </project>

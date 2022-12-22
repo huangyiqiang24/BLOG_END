@@ -31,12 +31,12 @@ public class UserDO extends BaseDO {
     private String userNo;
 
     /**
-     * 昵称
+     * 用户名
      */
-    private String nickname;
+    private String username;
 
     /**
-     * 密码
+     * 用户密码
      */
     private String password;
 

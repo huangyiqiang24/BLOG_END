@@ -32,6 +32,17 @@
         UPDATED_BY
     </sql>
 
+    <!-- 1.查询博客 -->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="integer">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        T_BLOG
+        WHERE
+        BLOG_NO = #{blogNo}
+    </select>
+
+    <!-- 2.新增博客 -->
     <insert id="insert" parameterType="BlogDO">
         INSERT  INTO
             T_BLOG(
@@ -60,35 +71,33 @@
                 #{updatedAt})
     </insert>
 
+    <!-- 3.修改博客 -->
     <update id="update" parameterType="BlogDO">
         UPDATE
             T_BLOG
         <set>
-            <if test="tittle != null and tittle != ''"/>
+            <if test="tittle != null and tittle != ''">
                 TITTLE = #{title},
-            <if test="content != null and content != ''"/>
+            </if>
+            <if test="content != null and content != ''">
                 CONTENT = #{content},
-            <if test="description != null and description != ''"/>
+            </if>
+            <if test="description != null and description != ''">
                 DESCRIPTION = #{description},
-            <if test="tag != null and tag != ''"/>
+            </if>
+            <if test="tag != null and tag != ''">
                 TAG = #{tag},
-            <if test="updated_by != null and updated_by != ''"/>
+            </if>
+            <if test="updated_by != null and updated_by != ''">
                 UPDATED_BY = #{updatedBy},
+            </if>
                 UPDATED_AT = now()
         </set>
         WHERE
             BLOG_NO = #{blogNo}
     </update>
 
-    <select id="selectById" resultMap="BaseResultMap" parameterType="integer">
-        SELECT
-            <include refid="Base_Column_List"/>
-        FROM
-            T_BLOG
-        WHERE
-            BLOG_NO = #{blogNo}
-    </select>
-
+    <!-- 4.分页查询博客 -->
     <select id="selectByPage" resultType="huayq.cn.blog.dal.model.BlogDO">
         SELECT
             <include refid="Base_Column_List"/>

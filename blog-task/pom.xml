@@ -10,10 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>blog-task</artifactId>
+    <packaging>jar</packaging>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
+
 
 </project>

@@ -3,7 +3,7 @@
 <mapper namespace="huayq.cn.blog.dal.mapper.CommentMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="huayq.cn.blog.dal.model.CommentDO">
+    <resultMap id="BaseResultMap" type="CommentDO">
         <id column="ID" property="id" />
         <result column="COMMENT_NO" property="commentNo" />
         <result column="NICKNAME" property="nickname" />
@@ -27,7 +27,9 @@
         UPDATED_AT,
         UPDATED_BY
     </sql>
-    <select id="selectById" resultType="huayq.cn.blog.dal.model.CommentDO">
+
+    <!-- 1.查询评论 -->
+    <select id="selectById" resultType="CommentDO" parameterType="String">
         SELECT
             <include refid="Base_Column_List"/>
         FROM
@@ -35,5 +37,69 @@
         WHERE
             COMMENT_NO = #{commentNo}
     </select>
+
+    <!-- 2.新增评论 -->
+    <insert id="insert" parameterType="CommentDO">
+        INSERT INTO
+            T_COMMENT(
+                COMMENT_NO,
+                NICKNAME,
+                CONTENT,
+                PARENT_COMMENT,
+                CREATED_AT,
+                CREATED_BY,
+                UPDATED_AT,
+                UPDATED_BY
+        )VALUES (
+                #{commentNo},
+                #{nickname},
+                #{content},
+                #{parentComment},
+                now(),
+                #{createdBy},
+                now(),
+                #{updatedBy})
+    </insert>
+
+    <!-- 3.修改评论 -->
+    <update id="update" parameterType="CommentDO">
+        UPDATE
+            T_COMMENT
+        <set>
+            <if test="nickname != null and nickname = '' ">
+                NICKNAME = #{nickname},
+            </if>
+            <if test="content != null and content = '' ">
+                CONTENT = #{content},
+            </if>
+            <if test="content != null and content = '' ">
+                CONTENT = #{content},
+            </if>
+                UPDATED_AT = now(),
+            <if test="updatedBy != null and updatedBy = '' ">
+                UPDATED_BY = #{updatedBy},
+            </if>
+        </set>
+        WHERE
+            COMMENT_NO = #{commentNo}
+    </update>
+
+    <!-- 4.分页查询评论信息 -->
+    <select id="selectByPage" resultType="CommentDO" parameterType="pageDO">
+            SELECT
+                <include refid="Base_Column_List" />
+            FROM
+                T_COMMENT
+            ORDER BY UPDATED_AT
+            limit #{startIndex,jdbcType=DECIMAL} <![CDATA[,]]> #{pageSize,jdbcType=DECIMAL}
+    </select>
+
+    <!-- 5.删除评论 -->
+    <delete id="deleteById" parameterType="String">
+        DELETE FROM
+            T_COMMENT
+        WHERE
+            COMMENT_NO = #{commentNo}
+    </delete>
 
 </mapper>

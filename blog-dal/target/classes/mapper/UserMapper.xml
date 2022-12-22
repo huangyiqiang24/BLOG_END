@@ -6,7 +6,7 @@
     <resultMap id="BaseResultMap" type="huayq.cn.blog.dal.model.UserDO">
         <id column="ID" property="id" />
         <result column="USER_NO" property="userNo" />
-        <result column="NICKNAME" property="nickname" />
+        <result column="USERNAME" property="username" />
         <result column="PASSWORD" property="password" />
         <result column="STATUS" property="status" />
         <result column="CREATED_AT" property="createdAt" />
@@ -19,7 +19,7 @@
     <sql id="Base_Column_List">
         ID,
         USER_NO,
-        NICKNAME,
+        USERNAME,
         PASSWORD,
         STATUS,
         CREATED_AT,
@@ -28,6 +28,7 @@
         UPDATED_BY
     </sql>
 
+    <!-- 1.查询用户 -->
     <select id="selectById" resultMap="BaseResultMap" parameterType="Integer">
         SELECT
             <include refid="Base_Column_List"/>
@@ -36,5 +37,69 @@
         WHERE
             USER_NO = #{userNo}
     </select>
+
+    <!--  2.新增博客 -->
+    <insert id="insert" parameterType="UserDO">
+        INSERT INTO
+            T_USER(
+                    USER_NO,
+                    USERNAME,
+                    PASSWORD,
+                    STATUS,
+                    CREATED_AT,
+                    CREATED_BY,
+                    UPDATED_AT,
+                    UPDATED_BY
+        )VALUES (
+                    #{userNo},
+                    #{username},
+                    #{password},
+                    #{status},
+                    now(),
+                    #{createdBy},
+                    now(),
+                    #{updatedBy})
+    </insert>
+
+    <!-- 3.修改博客 -->
+    <update id="update" parameterType="UserDO">
+        UPDATE
+            T_USER
+        <set>
+            <if test="username != null and username = '' ">
+                USERNAME = #{username},
+            </if>
+            <if test="password != null and password = '' ">
+                PASSWORD = #{password},
+            </if>
+            <if test="status != null and status = '' ">
+                STATUS = #{status},
+            </if>
+                UPDATED_AT = now(),
+            <if test="updatedBy != null and updatedBy = '' ">
+                UPDATED_BY = #{updatedBy},
+            </if>
+        </set>
+        WHERE
+            USER_NO = #{userNo}
+    </update>
+
+    <!-- 4.分页查询用户信息 -->
+    <select id="selectByPage" resultType="UserDO">
+        SELECT
+            <include refid="Base_Column_List" />
+        FROM
+            T_USER
+        ORDER BY UPDATED_AT
+            limit #{startIndex,jdbcType=DECIMAL} <![CDATA[,]]> #{pageSize,jdbcType=DECIMAL}
+    </select>
+
+    <!-- 5.删除用户 -->
+    <delete id="deleteByIdInt" parameterType="integer">
+        DELETE FROM
+            T_USER
+        WHERE
+            USER_NO = #{userNo}
+    </delete>
 
 </mapper>

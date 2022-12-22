@@ -53,6 +53,11 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
+                <artifactId>blog-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>blog-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -64,6 +69,16 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>blog-service-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>blog-manager</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>blog-task</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

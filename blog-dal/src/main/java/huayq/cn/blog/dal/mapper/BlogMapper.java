@@ -3,6 +3,8 @@ package huayq.cn.blog.dal.mapper;
 
 import huayq.cn.blog.dal.model.BlogDO;
 import huayq.cn.blog.dal.model.BlogPageDO;
+import huayq.cn.blog.dal.model.PageDO;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
@@ -14,6 +16,7 @@ import java.util.List;
  * @author huangyiqiang
  * @since 2022-12-19
  */
+@Mapper
 public interface BlogMapper{
 
     /**
@@ -22,7 +25,7 @@ public interface BlogMapper{
      * @param id       博客id
      * @return         BlogDO
      */
-    BlogDO selectById (int id);
+    BlogDO selectById (String id);
 
     /**
      * 2.新增博客
@@ -43,9 +46,9 @@ public interface BlogMapper{
     /**
      * 4.分页查询博客
      *
-     * @param blogPageDO    博客分页模型
+     * @param pageDO    博客分页模型
      * @return              博客集合
      */
-    List<BlogDO> selectByPage(BlogPageDO blogPageDO);
+    List<BlogDO> selectByPage(PageDO pageDO);
 
 }

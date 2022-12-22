@@ -3,7 +3,7 @@
 <mapper namespace="huayq.cn.blog.dal.mapper.TagMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="huayq.cn.blog.dal.model.TagDO">
+    <resultMap id="BaseResultMap" type="TagDO">
         <id column="ID" property="id" />
         <result column="TAG_NO" property="tagNo" />
         <result column="NAME" property="name" />
@@ -23,6 +23,8 @@
         UPDATED_AT,
         UPDATED_BY
     </sql>
+
+    <!-- 1.查询标签 -->
     <select id="selectById" resultMap="BaseResultMap">
         SELECT
             <include refid="Base_Column_List"/>
@@ -31,5 +33,61 @@
         WHERE
             TAG_NO = #{tagNo}
     </select>
+
+    <!-- 2.新增标签 -->
+    <insert id="insert" parameterType="TagDO">
+        INSERT  INTO
+            T_TAG(
+                TAG_NO,
+                NAME,
+                CREATED_AT,
+                CREATED_BY,
+                UPDATED_AT,
+                UPDATED_BY
+        )VALUES (
+                    #{tagNo},
+                    #{name},
+                    now(),
+                    #{createdBy},
+                    now(),
+                    #{updatedBy}
+    </insert>
+
+    <!-- 3.修改标签 -->
+    <update id="update" parameterType="TagDO">
+        UPDATE
+            T_TAG
+        <set>
+            <if test="name != null and name = '' ">
+                NAME = #{name},
+            </if>
+            UPDATED_AT = now(),
+            <if test="updatedBy != null and updatedBy = '' ">
+                UPDATED_BY = #{updatedBy},
+            </if>
+        </set>
+        WHERE
+            TAG_NO = #{tagNo}
+
+    </update>
+
+    <!-- 4.分页查询标签信息 -->
+    <select id="selectByPage" resultType="pageDO">
+        SELECT
+            <include refid="Base_Column_List" />
+        FROM
+            T_TAG
+        ORDER BY UPDATED_AT
+            limit #{startIndex,jdbcType=DECIMAL} <![CDATA[,]]> #{pageSize,jdbcType=DECIMAL}
+    </select>
+
+    <!-- 5.删除标签 -->
+    <delete id="deleteById" parameterType="String">
+        DELETE FROM
+            T_TAG
+        WHERE
+            TAG_NO = #{tagNo}
+    </delete>
+
 
 </mapper>

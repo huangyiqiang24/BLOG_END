@@ -23,8 +23,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>blog-common</artifactId>
-            <version>1.0.0</version>
+            <artifactId>blog-manager</artifactId>
         </dependency>
     </dependencies>
 
