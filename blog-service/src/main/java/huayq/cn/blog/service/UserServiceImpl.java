@@ -40,44 +40,44 @@ public class UserServiceImpl  implements UserService {
 
     @Override
     public Result<Boolean> addUser(UserReqDTO userReqDTO, String traceLogId) {
-        try {
+//        try {
             UserBO addUserBO = getUserBO(userReqDTO);
             userManager.addUser(addUserBO);
             Result<Boolean> result = new Result<>(true);
             return result;
-        }catch (Exception e){
-            return new Result<>();
-        }
+//        }catch (Exception e){
+//            return new Result<>();
+//        }
     }
 
     @Override
     public Result<Boolean> modifyUser(UserReqDTO userReqDTO, String traceLogId) {
-        try {
+//        try {
             UserBO modifyUserBO = getUserBO(userReqDTO);
             userManager.modifyUser(modifyUserBO);
             Result<Boolean> result = new Result<>(true);
             return result;
-        }catch (Exception e){
-            return new Result<>();
-        }
+//        }catch (Exception e){
+//            return new Result<>();
+//        }
     }
 
     @Override
     public Result<UserResDTO> queryUserById(String id, String traceLogId) {
-        try {
+//        try {
 
             UserBO userBO = userManager.queryUserById(id);
             UserResDTO userDTO = getUserDTO(userBO);
             Result<UserResDTO> result = new Result<>(userDTO);
             return result;
-        }catch (Exception e){
-            return new Result<>();
-        }
+//        }catch (Exception e){
+//            return new Result<>();
+//        }
     }
 
     @Override
     public Result<PageResDTO<UserResDTO>> queryUserByPage(PageReqDTO pageReqDTO, String traceLogId) {
-        try {
+//        try {
             List<UserBO> userBOS = userManager.queryUserByPage(getPageBO(pageReqDTO));
             List<UserResDTO> userResDTOS = new ArrayList<>();
             for (UserBO userBO : userBOS){
@@ -86,16 +86,16 @@ public class UserServiceImpl  implements UserService {
             PageResDTO<UserResDTO> pageResDTO = new PageResDTO<>(userResDTOS);
             Result<PageResDTO<UserResDTO>> result = new Result<>(pageResDTO);
             return result;
-        }catch (Exception e){
-            return new Result<>();
-        }
+//        }catch (Exception e){
+//            return new Result<>();
+//        }
     }
 
     @Override
     public Result<Boolean> deleteUser(UserReqDTO userReqDTO, String traceLogId) {
         try {
-            UserBO deleteUserBO = getUserBO(userReqDTO);
-            userManager.deleteUser(deleteUserBO);
+
+            userManager.deleteUser(userReqDTO.getUserNo());
             Result<Boolean> result = new Result<>(true);
             return result;
         }catch (Exception e){

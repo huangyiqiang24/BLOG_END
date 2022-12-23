@@ -15,9 +15,19 @@ public class TagConvert {
 
     public static TagBO getTagBO(TagReqDTO tagReqDTO){
         TagBO tagBO = new TagBO();
-        tagBO.setTagNo("")
-                .setName(tagReqDTO.getName());
-        tagBO.setCreatedBy(tagReqDTO.getOperator());
+
+        if (tagReqDTO.getTagNo() == null){
+            //新增
+            tagBO.setTagNo(String.valueOf(System.currentTimeMillis()));
+            tagBO.setCreatedBy(tagReqDTO.getOperator());
+        }else {
+            //修改
+            tagBO.setTagNo(tagReqDTO.getTagNo());
+            tagBO.setUpdatedBy(tagReqDTO.getOperator());
+        }
+
+        tagBO.setName(tagReqDTO.getName());
+
         return tagBO;
     }
 

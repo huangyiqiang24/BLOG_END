@@ -1,6 +1,7 @@
 package huayq.cn.blog.service;
 
 
+import com.sun.xml.internal.ws.developer.Serialization;
 import huayq.cn.blog.manager.BlogManager;
 import huayq.cn.blog.manager.model.BlogBO;
 import huayq.cn.blog.service.api.BlogService;
@@ -12,6 +13,8 @@ import huayq.cn.blog.service.api.model.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import static huayq.cn.blog.convert.BlogConvert.getBlogBO;
@@ -35,27 +38,25 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Result<Boolean> addBlog(BlogReqDTO blogReqDTO, String traceLogId) {
 
-        try {
+
             BlogBO addBlogBO = getBlogBO(blogReqDTO);
             blogManager.addBlog(addBlogBO);
             Result<Boolean> result = new Result<>(true);
             return result;
-        }catch (Exception e){
-            return new Result<>();
-        }
+
     }
 
     @Override
     public Result<Boolean> modifyBlog(BlogReqDTO blogReqDTO, String traceLogId) {
 
-        try {
+//        try {
             BlogBO modifyBlogBO = getBlogBO(blogReqDTO);
             blogManager.modifyBlog(modifyBlogBO);
             Result<Boolean> result = new Result<>(true);
             return result;
-        }catch (Exception e){
-            return new Result<>();
-        }
+//        }catch (Exception e){
+//            return new Result<>();
+//        }
 
     }
 
@@ -75,7 +76,7 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Result<PageResDTO<BlogResDTO>> queryBlogByPage(PageReqDTO pageReqDTO, String traceLogId) {
 
-        try {
+//        try {
             List<BlogBO> blogBOS = blogManager.queryBlogByPage(getPageBO(pageReqDTO));
             List<BlogResDTO> blogResDTOS = new ArrayList<>();
             for (BlogBO blogBO : blogBOS){
@@ -84,9 +85,9 @@ public class BlogServiceImpl implements BlogService {
             PageResDTO<BlogResDTO> pageResDTO = new PageResDTO<>(blogResDTOS);
             Result<PageResDTO<BlogResDTO>> result = new Result<>(pageResDTO);
             return result;
-        }catch (Exception e){
-            return new Result<>();
-        }
+//        }catch (Exception e){
+//            return new Result<>();
+//        }
 
     }
 }

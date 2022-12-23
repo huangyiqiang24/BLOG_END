@@ -1,12 +1,11 @@
 package huayq.cn.blog.manager.impl;
 
 import huayq.cn.blog.dal.mapper.UserMapper;
-import huayq.cn.blog.dal.model.TagDO;
 import huayq.cn.blog.dal.model.UserDO;
 import huayq.cn.blog.manager.UserManager;
 import huayq.cn.blog.manager.model.PageBO;
-import huayq.cn.blog.manager.model.TagBO;
 import huayq.cn.blog.manager.model.UserBO;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static huayq.cn.blog.manager.convert.PageConvert.getPageDO;
-import static huayq.cn.blog.manager.convert.TagConvert.getTagBO;
 import static huayq.cn.blog.manager.convert.UserConvert.getUserBO;
 import static huayq.cn.blog.manager.convert.UserConvert.getUserDO;
 
@@ -24,19 +22,21 @@ import static huayq.cn.blog.manager.convert.UserConvert.getUserDO;
  * @Date: Created in 14:16 2022/12/22
  */
 @Service
+@Slf4j
 public class UserManagerImpl implements UserManager {
 
     @Autowired
     private UserMapper userMapper;
 
     @Override
-    public int addUser(UserBO userBO) {
-        return userMapper.insert(getUserDO(userBO));
+    public void addUser(UserBO userBO) {
+        userMapper.insert(getUserDO(userBO));
     }
 
     @Override
-    public int modifyUser(UserBO userBO) {
-        return userMapper.update(getUserDO(userBO));
+    public void modifyUser(UserBO userBO) {
+        UserDO userDO = getUserDO(userBO);
+        userMapper.update(userDO);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class UserManagerImpl implements UserManager {
     }
 
     @Override
-    public int deleteUser(UserBO userBO) {
-        return userMapper.deleteById(getUserDO(userBO).getUserNo());
+    public void deleteUser(String userNo) {
+        userMapper.deleteById(userNo);
     }
 }

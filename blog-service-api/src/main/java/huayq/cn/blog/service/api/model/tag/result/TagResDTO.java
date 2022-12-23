@@ -15,7 +15,7 @@ import java.io.Serializable;
  */
 @Setter
 @Getter
-@ToString
+@ToString(callSuper = true)
 @Accessors(chain = true)
 public class TagResDTO extends BaseResDTO implements Serializable {
 

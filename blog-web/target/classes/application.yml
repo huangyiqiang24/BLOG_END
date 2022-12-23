@@ -14,18 +14,3 @@ mybatis:
 
 server:
   port: 8080
-
-dubbo:
-  application:
-    name: blog_end
-  protocol:
-    name: dubbo
-    port: 20890
-  registry:
-    address: zookeeper://43.139.51.217
-    port: 2181
-    timeout: 100000
-  scan:
-    base-packages: blog-service.huayq.cn.blog.service
-#  scan:
-#    base-packages: cn.huayq.dubboExample

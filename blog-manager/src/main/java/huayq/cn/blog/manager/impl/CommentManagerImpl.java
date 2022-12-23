@@ -58,8 +58,7 @@ public class CommentManagerImpl implements CommentManager {
     }
 
     @Override
-    public int deleteComment(CommentBO commentBO) {
-        CommentDO commentDO = getCommentDO(commentBO);
-        return commentMapper.deleteById(commentDO.getCommentNo());
+    public int deleteComment(String commentNo) {
+        return commentMapper.deleteById(commentNo);
     }
 }

@@ -14,17 +14,17 @@ public interface UserManager {
 
     /**
      * 新增用户
+     *
      * @param userBO 用户新增BO
-     * @return int 新增结果
      */
-    int addUser(UserBO userBO);
+    void addUser(UserBO userBO);
 
     /**
      * 修改用户
+     *
      * @param userBO 用户修改BO
-     * @return int 修改结果
      */
-   int modifyUser(UserBO userBO);
+   void modifyUser(UserBO userBO);
 
     /**
      * 查询用户
@@ -35,16 +35,17 @@ public interface UserManager {
 
     /**
      * 分页查询用户
+     *  @param pageBO 分页查询BO
      * @return List<UserBO> 分页查询结果
      */
     List<UserBO> queryUserByPage(PageBO pageBO);
 
     /**
      * 删除用户
-     * @param userBO 用户删除BO
-     * @return int 删除结果
+     *
+     * @param userNo 删除用户的userNo
      */
-    int deleteUser(UserBO userBO);
+    void deleteUser(String userNo);
 
 
 }

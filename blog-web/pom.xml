@@ -26,8 +26,18 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>blog-dal</artifactId>
         </dependency>
-
-
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>blog-manager</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>blog-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
     </dependencies>
 
 

@@ -3,7 +3,7 @@
 <mapper namespace="huayq.cn.blog.dal.mapper.UserMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="huayq.cn.blog.dal.model.UserDO">
+    <resultMap id="BaseResultMap" type="UserDO">
         <id column="ID" property="id" />
         <result column="USER_NO" property="userNo" />
         <result column="USERNAME" property="username" />
@@ -29,7 +29,7 @@
     </sql>
 
     <!-- 1.查询用户 -->
-    <select id="selectById" resultMap="BaseResultMap" parameterType="Integer">
+    <select id="selectById" resultMap="BaseResultMap" parameterType="String">
         SELECT
             <include refid="Base_Column_List"/>
         FROM
@@ -66,26 +66,26 @@
         UPDATE
             T_USER
         <set>
-            <if test="username != null and username = '' ">
+            <if test="username != null and username != '' ">
                 USERNAME = #{username},
             </if>
-            <if test="password != null and password = '' ">
+            <if test="password != null and password != '' ">
                 PASSWORD = #{password},
             </if>
-            <if test="status != null and status = '' ">
+            <if test="status != null and status != '' ">
                 STATUS = #{status},
             </if>
-                UPDATED_AT = now(),
-            <if test="updatedBy != null and updatedBy = '' ">
+            <if test="updatedBy != null and updatedBy != '' ">
                 UPDATED_BY = #{updatedBy},
             </if>
+                UPDATED_AT = now()
         </set>
         WHERE
             USER_NO = #{userNo}
     </update>
 
     <!-- 4.分页查询用户信息 -->
-    <select id="selectByPage" resultType="UserDO">
+    <select id="selectByPage" resultMap="BaseResultMap" parameterType="pageDO">
         SELECT
             <include refid="Base_Column_List" />
         FROM
@@ -95,7 +95,7 @@
     </select>
 
     <!-- 5.删除用户 -->
-    <delete id="deleteByIdInt" parameterType="integer">
+    <delete id="deleteById" parameterType="String">
         DELETE FROM
             T_USER
         WHERE

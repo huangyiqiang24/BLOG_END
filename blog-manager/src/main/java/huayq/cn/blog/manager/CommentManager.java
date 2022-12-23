@@ -41,10 +41,10 @@ public interface CommentManager {
 
     /**
      * 删除评论
-     * @param commentBO 评论删除BO
+     * @param commentNo 评论删除BO
      * @return int 删除结果
      */
-    int deleteComment(CommentBO commentBO);
+    int deleteComment(String commentNo);
 
 
 

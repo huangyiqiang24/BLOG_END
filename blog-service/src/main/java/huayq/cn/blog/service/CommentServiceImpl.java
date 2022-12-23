@@ -92,8 +92,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Result<Boolean> deleteComment(CommentReqDTO commentReqDTO, String traceLogId) {
         try {
-            CommentBO deleteCommentBO = getCommentBO(commentReqDTO);
-            commentManager.deleteComment(deleteCommentBO);
+            commentManager.deleteComment(commentReqDTO.getCommentNo());
             Result<Boolean> result = new Result<>(true);
             return result;
         }catch (Exception e){

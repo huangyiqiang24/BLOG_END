@@ -46,7 +46,6 @@
     <insert id="insert" parameterType="BlogDO">
         INSERT  INTO
             T_BLOG(
-                ID,
                 BLOG_NO,
                 TITLE,
                 CONTENT,
@@ -58,7 +57,6 @@
                 UPDATED_AT,
                 UPDATED_BY
         )VALUES (
-                #{id},
                 #{blogNo},
                 #{title},
                 #{content},
@@ -66,9 +64,9 @@
                 #{views},
                 #{tag},
                 now(),
-                #{createdAt},
+                #{createdBy},
                 now(),
-                #{updatedAt})
+                #{updatedBy})
     </insert>
 
     <!-- 3.修改博客 -->
@@ -76,8 +74,8 @@
         UPDATE
             T_BLOG
         <set>
-            <if test="tittle != null and tittle != ''">
-                TITTLE = #{title},
+            <if test="title != null and title != ''">
+                TITLE = #{title},
             </if>
             <if test="content != null and content != ''">
                 CONTENT = #{content},
@@ -88,7 +86,7 @@
             <if test="tag != null and tag != ''">
                 TAG = #{tag},
             </if>
-            <if test="updated_by != null and updated_by != ''">
+            <if test="updatedBy != null and updatedBy != ''">
                 UPDATED_BY = #{updatedBy},
             </if>
                 UPDATED_AT = now()
@@ -98,7 +96,7 @@
     </update>
 
     <!-- 4.分页查询博客 -->
-    <select id="selectByPage" resultType="pageDO">
+    <select id="selectByPage" resultMap="BaseResultMap"  parameterType="pageDO">
         SELECT
             <include refid="Base_Column_List"/>
         FROM

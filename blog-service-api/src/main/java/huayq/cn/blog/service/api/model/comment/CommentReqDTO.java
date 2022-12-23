@@ -3,6 +3,7 @@ package huayq.cn.blog.service.api.model.comment;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @ToString
+@Accessors(chain = true)
 public class CommentReqDTO implements Serializable {
 
     /**

@@ -41,10 +41,10 @@ public interface TagManager {
 
     /**
      * 删除标签
-     * @param tagBO 标签删除BO
+     * @param tagNo 标签删除BO
      * @return int  删除结果
      */
-    int deleteTag(TagBO tagBO);
+    int deleteTag(String tagNo);
 
 
 }

@@ -14,6 +14,9 @@ public class PageConvert {
         PageDO pageDO = new PageDO();
         pageDO.setCurrentPage(pageBO.getCurrentPage());
         pageDO.setPageSize(pageBO.getPageSize());
+
+        pageDO.setStartIndex((pageBO.getCurrentPage() - 1) * pageBO.getPageSize());
+
         return pageDO;
     }
 }

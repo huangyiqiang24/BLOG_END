@@ -25,6 +25,10 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>blog-manager</artifactId>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
     </dependencies>
 
 

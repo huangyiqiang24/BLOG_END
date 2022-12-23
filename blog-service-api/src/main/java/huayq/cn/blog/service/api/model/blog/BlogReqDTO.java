@@ -4,6 +4,7 @@ import com.sun.istack.internal.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
@@ -15,6 +16,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @ToString
+@Accessors(chain = true)
 public class BlogReqDTO implements Serializable {
 
     /**
@@ -22,6 +24,10 @@ public class BlogReqDTO implements Serializable {
      */
     private static final long serialVersionUID = 6387009939217792860L;
 
+    /**
+     * 博客编号
+     */
+    private String blogNo;
 
     /**
      * 标题

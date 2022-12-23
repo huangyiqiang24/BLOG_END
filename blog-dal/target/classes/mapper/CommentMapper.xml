@@ -29,7 +29,7 @@
     </sql>
 
     <!-- 1.查询评论 -->
-    <select id="selectById" resultType="CommentDO">
+    <select id="selectById" resultType="CommentDO" parameterType="String">
         SELECT
             <include refid="Base_Column_List"/>
         FROM
@@ -66,17 +66,17 @@
         UPDATE
             T_COMMENT
         <set>
-            <if test="nickname != null and nickname = '' ">
+            <if test="nickname != null and nickname != '' ">
                 NICKNAME = #{nickname},
             </if>
-            <if test="content != null and content = '' ">
+            <if test="content != null and content != '' ">
                 CONTENT = #{content},
             </if>
-            <if test="content != null and content = '' ">
+            <if test="content != null and content != '' ">
                 CONTENT = #{content},
             </if>
                 UPDATED_AT = now(),
-            <if test="updatedBy != null and updatedBy = '' ">
+            <if test="updatedBy != null and updatedBy != '' ">
                 UPDATED_BY = #{updatedBy},
             </if>
         </set>
@@ -85,7 +85,7 @@
     </update>
 
     <!-- 4.分页查询评论信息 -->
-    <select id="selectByPage" resultType="CommentDO">
+    <select id="selectByPage" resultMap="BaseResultMap" parameterType="pageDO">
             SELECT
                 <include refid="Base_Column_List" />
             FROM
@@ -95,7 +95,7 @@
     </select>
 
     <!-- 5.删除评论 -->
-    <delete id="deleteByIdInt" parameterType="integer">
+    <delete id="deleteById" parameterType="String">
         DELETE FROM
             T_COMMENT
         WHERE

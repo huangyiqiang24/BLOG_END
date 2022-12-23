@@ -37,10 +37,6 @@ public class PageDO implements Serializable {
      */
     private int startIndex;
 
-    /**
-     * 结束位置
-     */
-    private int endIndex;
 
     /**
      * 排序规则

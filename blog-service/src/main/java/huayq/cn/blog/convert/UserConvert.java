@@ -15,12 +15,22 @@ public class UserConvert {
 
     public static UserBO getUserBO(UserReqDTO userReqDTO){
         UserBO userBO = new UserBO();
+
+        if (userReqDTO.getUserNo() == null){
+            //新增
+            userBO.setUserNo(String.valueOf(System.currentTimeMillis()));
+            userBO.setCreatedBy(userReqDTO.getOperator());
+        }else {
+            //修改
+            userBO.setUserNo(userReqDTO.getUserNo());
+            userBO.setUpdatedBy(userReqDTO.getOperator());
+        }
+
         userBO
-                .setUserNo("")
                 .setUsername(userReqDTO.getUsername())
-                .setPassword(userBO.getPassword())
+                .setPassword(userReqDTO.getPassword())
                 .setStatus(userReqDTO.getStatus());
-        userBO.setCreatedBy(userReqDTO.getOperator());
+
         return userBO;
     }
 

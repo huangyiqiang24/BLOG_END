@@ -54,7 +54,7 @@ public class TagManagerImpl implements TagManager {
     }
 
     @Override
-    public int deleteTag(TagBO tagBO) {
-        return tagMapper.deleteById(getTagDO(tagBO).getTagNo());
+    public int deleteTag(String tagNo) {
+        return tagMapper.deleteById(tagNo);
     }
 }

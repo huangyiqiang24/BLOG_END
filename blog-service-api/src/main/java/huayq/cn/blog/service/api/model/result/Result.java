@@ -13,6 +13,9 @@ import java.io.Serializable;
  * @Description:
  * @Date: Created in 10:43 2022/12/22
  */
+@Setter
+@Getter
+@ToString
 public class Result<T> implements Serializable {
 
     private static final long serialVersionUID = -2491645240607198823L;

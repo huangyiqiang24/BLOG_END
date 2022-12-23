@@ -38,45 +38,45 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public Result<Boolean> addTag(TagReqDTO tagReqDTO, String traceLogId) {
-        try {
+//        try {
             TagBO addTagBO = getTagBO(tagReqDTO);
             tagManager.addTag(addTagBO);
             Result<Boolean> result = new Result<>(true);
             return result;
-        }catch (Exception e){
-            return new Result<>();
-        }
+//        }catch (Exception e){
+//            return new Result<>();
+//        }
     }
 
     @Override
     public Result<Boolean> modifyTag(TagReqDTO tagReqDTO, String traceLogId) {
-        try {
+//        try {
             TagBO modifyTagBO = getTagBO(tagReqDTO);
             tagManager.modifyTag(modifyTagBO);
             Result<Boolean> result = new Result<>(true);
             return result;
-        }catch (Exception e){
-            return new Result<>();
-        }
+//        }catch (Exception e){
+//            return new Result<>();
+//        }
     }
 
     @Override
     public Result<TagResDTO> queryTagById(String id, String traceLogId) {
-        try {
+//        try {
 
             TagBO tagBO = tagManager.queryTagById(id);
             TagResDTO tagDTO = getTagDTO(tagBO);
             Result<TagResDTO> result = new Result<>(tagDTO);
             return result;
-        }catch (Exception e){
-            return new Result<>();
-        }
+//        }catch (Exception e){
+//            return new Result<>();
+//        }
     }
 
     @Override
     public Result<PageResDTO<TagResDTO>> queryTagByPage(PageReqDTO pageReqDTO, String traceLogId) {
 
-        try {
+//        try {
             List<TagBO> tagBOS = tagManager.queryTagByPage(getPageBO(pageReqDTO));
             List<TagResDTO> tagResDTOS = new ArrayList<>();
             for (TagBO tagBO : tagBOS){
@@ -85,22 +85,21 @@ public class TagServiceImpl implements TagService {
             PageResDTO<TagResDTO> pageResDTO = new PageResDTO<>(tagResDTOS);
             Result<PageResDTO<TagResDTO>> result = new Result<>(pageResDTO);
             return result;
-        }catch (Exception e){
-            return new Result<>();
-        }
+//        }catch (Exception e){
+//            return new Result<>();
+//        }
 
 
     }
 
     @Override
     public Result<Boolean> deleteTag(TagReqDTO tagReqDTO, String traceLogId) {
-        try {
-            TagBO deleteTagBO = getTagBO(tagReqDTO);
-            tagManager.deleteTag(deleteTagBO);
+//        try {
+            tagManager.deleteTag(tagReqDTO.getTagNo());
             Result<Boolean> result = new Result<>(true);
             return result;
-        }catch (Exception e){
-            return new Result<>();
-        }
+//        }catch (Exception e){
+//            return new Result<>();
+//        }
     }
 }

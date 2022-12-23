@@ -50,7 +50,7 @@
                     now(),
                     #{createdBy},
                     now(),
-                    #{updatedBy}
+                    #{updatedBy})
     </insert>
 
     <!-- 3.修改标签 -->
@@ -58,11 +58,11 @@
         UPDATE
             T_TAG
         <set>
-            <if test="name != null and name = '' ">
+            <if test="name != null and name != '' ">
                 NAME = #{name},
             </if>
             UPDATED_AT = now(),
-            <if test="updatedBy != null and updatedBy = '' ">
+            <if test="updatedBy != null and updatedBy != '' ">
                 UPDATED_BY = #{updatedBy},
             </if>
         </set>
@@ -72,7 +72,7 @@
     </update>
 
     <!-- 4.分页查询标签信息 -->
-    <select id="selectByPage" resultType="pageDO">
+    <select id="selectByPage" resultMap="BaseResultMap" parameterType="pageDO">
         SELECT
             <include refid="Base_Column_List" />
         FROM

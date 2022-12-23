@@ -14,12 +14,22 @@ public class CommentConvert {
 
     public static CommentBO getCommentBO(CommentReqDTO commentReqDTO){
         CommentBO commentBO = new CommentBO();
+
+        if (commentReqDTO.getCommentNo() == null){
+            //新增
+            commentBO.setCommentNo(String.valueOf(System.currentTimeMillis()));
+            commentBO.setCreatedBy(commentReqDTO.getOperator());
+        }else {
+            //修改
+            commentBO.setCommentNo(commentReqDTO.getCommentNo());
+            commentBO.setUpdatedBy(commentReqDTO.getOperator());
+        }
+
         commentBO
-                .setCommentNo("")
                 .setContent(commentReqDTO.getContent())
                 .setParentComment(commentReqDTO.getParentComment())
-                .setNickname(commentReqDTO.getNickname())
-                .setCreatedBy(commentReqDTO.getOperator());
+                .setNickname(commentReqDTO.getNickname());
+
         return commentBO;
     }
 
